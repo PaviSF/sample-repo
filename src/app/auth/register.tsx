@@ -1,6 +1,3 @@
-//to remove
-import logMessage from "@constants/LogFunction";
-
 // React and React Native imports
 import React, { useState, useRef } from "react";
 import {
@@ -20,10 +17,11 @@ import AlertModal from "@components/AlertModal";
 import { RegisterData } from "@interfaces/Register";
 import Auth from "@actions/auth";
 import styles from "./styles/register.styles";
+import useRegister from "@hooks/auth/register.hooks";
 
 const Register = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const {loading, register} = useRegister();
   const [registerDetails, setRegisterDetails] = useState<RegisterData>({
     turf_name: "",
     location: "",
@@ -46,12 +44,6 @@ const Register = () => {
       [field]: text,
     }));
   };
-
-  const register = async () => {
-    setLoading(true);
-    await Auth.register(registerDetails, changeAlertBoxState)
-    setLoading(false);
-  }
 
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -93,7 +85,7 @@ const Register = () => {
         />
         <TouchableOpacity
           style={styles.register}
-          onPress={register}
+          onPress={()=>register(registerDetails, changeAlertBoxState)}
         >
           {loading ? (
             <ActivityIndicator size={25} color={"white"} />

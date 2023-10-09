@@ -14,20 +14,15 @@ import {
 import { useRouter } from "expo-router";
 
 //Internal imports
-import Auth from "@actions/auth"
-import styles from "@app/auth/styles/login.styles"
+import styles from "@app/auth/styles/login.styles";
+import useLogin from "@hooks/auth/login.hooks";
 
 const Login = () => {
   // State variables for username, password, loading, and router.
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const login = async () => {
-    setLoading(true);
-    await Auth.login(username,password,router)
-    setLoading(false);
-  }
+  const { loading, login } = useLogin(); //Custom  hook to handle login
 
   return (
     <SafeAreaView style={styles.container}>
@@ -55,7 +50,10 @@ const Login = () => {
           Forgot Password?
         </Text>
         {/* Login Button */}
-        <TouchableOpacity style={styles.loginButton} onPress={login}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => login(username, password, router)}
+        >
           {loading ? (
             <ActivityIndicator size={25} color={"white"} />
           ) : (

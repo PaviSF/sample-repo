@@ -9,6 +9,7 @@
       "@constants/*": ["src/constants/*"],
       "@interfaces/*": ["src/interfaces/*"],
       "@actions/*": ["src/actions/*"],
+      "@hooks/*": ["src/hooks/*"],
       //"@/*": ["src/*"]
     }
   },
