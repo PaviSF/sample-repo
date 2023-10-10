@@ -1,8 +1,7 @@
-import Modal from "react-native-modal";
-
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { forwardRef, useState, useImperativeHandle } from "react";
-import { router } from "expo-router";
+import { router } from 'expo-router';
+import React, { forwardRef, useState, useImperativeHandle } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Modal from 'react-native-modal';
 
 const AlertModal = ({ description }, ref) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -29,12 +28,11 @@ const AlertModal = ({ description }, ref) => {
           <Pressable
             onPress={() => router.back()}
             style={{
-              backgroundColor: "green",
+              backgroundColor: 'green',
               flex: 0.15,
               borderBottomLeftRadius: 22,
               borderBottomRightRadius: 22,
-            }}
-          >
+            }}>
             <Text>Done</Text>
           </Pressable>
         </View>
@@ -48,7 +46,7 @@ export default forwardRef(AlertModal);
 const styles = StyleSheet.create({
   modal: {
     flex: 0.45,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     borderRadius: 22,
   },
 });

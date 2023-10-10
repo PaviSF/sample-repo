@@ -1,5 +1,9 @@
 // React and React Native imports
-import React, { useState, useRef } from "react";
+import AlertModal from '@components/AlertModal';
+import useRegister from '@hooks/auth/register.hooks';
+import { RegisterData } from '@interfaces/Register';
+import { useRouter } from 'expo-router';
+import React, { useState, useRef } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -7,28 +11,20 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 
-// Expo imports
-import { useRouter } from "expo-router";
-
-// Internal imports
-import AlertModal from "@components/AlertModal";
-import { RegisterData } from "@interfaces/Register";
-import Auth from "@actions/auth";
-import styles from "./styles/register.styles";
-import useRegister from "@hooks/auth/register.hooks";
+import styles from './styles/register.styles';
 
 const Register = () => {
   const router = useRouter();
-  const {loading, register} = useRegister();
+  const { loading, register } = useRegister();
   const [registerDetails, setRegisterDetails] = useState<RegisterData>({
-    turf_name: "",
-    location: "",
-    description: "",
-    user_name: "",
-    user_email: "",
-    user_phone: "",
+    turf_name: '',
+    location: '',
+    description: '',
+    user_name: '',
+    user_email: '',
+    user_phone: '',
   });
 
   const alertBoxRef = useRef(null);
@@ -54,50 +50,47 @@ const Register = () => {
         <TextInput
           style={styles.input}
           placeholder="Name"
-          onChangeText={(text) => handleInputChange("user_name", text)}
+          onChangeText={(text) => handleInputChange('user_name', text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Phone"
-          onChangeText={(text) => handleInputChange("user_phone", text)}
+          onChangeText={(text) => handleInputChange('user_phone', text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
-          onChangeText={(text) => handleInputChange("user_email", text)}
+          onChangeText={(text) => handleInputChange('user_email', text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Venue Name"
-          onChangeText={(text) => handleInputChange("turf_name", text)}
+          onChangeText={(text) => handleInputChange('turf_name', text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Location"
-          onChangeText={(text) => handleInputChange("location", text)}
+          onChangeText={(text) => handleInputChange('location', text)}
         />
         <TextInput
           style={[styles.input, styles.multilineInput]}
           placeholder="Describe about your court"
-          multiline={true}
+          multiline
           numberOfLines={6}
-          onChangeText={(text) => handleInputChange("description", text)}
+          onChangeText={(text) => handleInputChange('description', text)}
         />
         <TouchableOpacity
           style={styles.register}
-          onPress={()=>register(registerDetails, changeAlertBoxState)}
-        >
+          onPress={() => register(registerDetails, changeAlertBoxState)}>
           {loading ? (
-            <ActivityIndicator size={25} color={"white"} />
+            <ActivityIndicator size={25} color="white" />
           ) : (
             <Text style={styles.registerText}>Register</Text>
           )}
         </TouchableOpacity>
         <AlertModal
           ref={alertBoxRef}
-          description={
-            "You have successfully registered with playspots. Our representative will contact you soon!"
-          }
+          description="You have successfully registered with playspots. Our representative will contact you soon!"
         />
       </View>
     </SafeAreaView>
@@ -105,5 +98,3 @@ const Register = () => {
 };
 
 export default Register;
-
-

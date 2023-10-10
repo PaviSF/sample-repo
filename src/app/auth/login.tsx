@@ -1,5 +1,8 @@
 // React and React Native imports
-import React, { useState } from "react";
+import styles from '@app/auth/styles/login.styles';
+import useLogin from '@hooks/auth/login.hooks';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -8,19 +11,15 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
-
+} from 'react-native';
 //Expo imports
-import { useRouter } from "expo-router";
 
 //Internal imports
-import styles from "@app/auth/styles/login.styles";
-import useLogin from "@hooks/auth/login.hooks";
 
 const Login = () => {
   // State variables for username, password, loading, and router.
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const router = useRouter();
   const { loading, login } = useLogin(); //Custom  hook to handle login
 
@@ -28,13 +27,9 @@ const Login = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         {/* Logo */}
-        <Image source={require("assets/logo.png")} style={styles.logo} />
+        <Image source={require('assets/logo.png')} style={styles.logo} />
         {/* Username Input */}
-        <TextInput
-          style={styles.credentials}
-          placeholder="Username"
-          onChangeText={setUsername}
-        />
+        <TextInput style={styles.credentials} placeholder="Username" onChangeText={setUsername} />
         {/* Password Input */}
         <TextInput
           style={styles.credentials}
@@ -43,26 +38,22 @@ const Login = () => {
           onChangeText={setPassword}
         />
         {/* Forgot Password Link */}
-        <Text
-          style={styles.forgotPassword}
-          onPress={() => router.push("/auth/forgot_password")}
-        >
+        <Text style={styles.forgotPassword} onPress={() => router.push('/auth/forgot_password')}>
           Forgot Password?
         </Text>
         {/* Login Button */}
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={() => login(username, password, router)}
-        >
+          onPress={() => login(username, password, router)}>
           {loading ? (
-            <ActivityIndicator size={25} color={"white"} />
+            <ActivityIndicator size={25} color="white" />
           ) : (
             <Text style={styles.loginText}>Log I</Text>
           )}
         </TouchableOpacity>
       </View>
       {/* Register Link */}
-      <TouchableOpacity onPress={() => router.push("/auth/register")}>
+      <TouchableOpacity onPress={() => router.push('/auth/register')}>
         <Text style={styles.registerRedirect}>Don't have an account?</Text>
       </TouchableOpacity>
     </SafeAreaView>

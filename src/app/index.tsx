@@ -1,18 +1,18 @@
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
-import * as SplashScreen from "expo-splash-screen";
-import { Redirect } from "expo-router";
-import { useFonts } from "expo-font";
-import messaging from "@react-native-firebase/messaging";
-import * as Crypto from "expo-crypto";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import messaging from '@react-native-firebase/messaging';
+import * as Crypto from 'expo-crypto';
+import { useFonts } from 'expo-font';
+import { Redirect } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
 
-const index = () => {
+const Index = () => {
   const [fontsLoaded] = useFonts({
-    "Montserrat-Regular": require("assets/fonts/Montserrat-Regular.ttf"),
-    "Montserrat-Medium": require("assets/fonts/Montserrat-Medium.ttf"),
-    "Montserrat-Light": require("assets/fonts/Montserrat-Light.ttf"),
-    "Montserrat-SemiBold": require("assets/fonts/Montserrat-SemiBold.ttf"),
+    'Montserrat-Regular': require('assets/fonts/Montserrat-Regular.ttf'),
+    'Montserrat-Medium': require('assets/fonts/Montserrat-Medium.ttf'),
+    'Montserrat-Light': require('assets/fonts/Montserrat-Light.ttf'),
+    'Montserrat-SemiBold': require('assets/fonts/Montserrat-SemiBold.ttf'),
   });
 
   async function requestUserPermission() {
@@ -22,15 +22,15 @@ const index = () => {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log("Authorization status:", authStatus);
+      console.log('Authorization status:', authStatus);
     }
   }
 
   async function getUDID() {
-    let udId = await AsyncStorage.getItem("ud_id");
+    let udId = await AsyncStorage.getItem('ud_id');
     if (!udId) {
       udId = Crypto.randomUUID();
-      await AsyncStorage.setItem("ud_id", udId);
+      await AsyncStorage.setItem('ud_id', udId);
     }
   }
 
@@ -46,7 +46,7 @@ const index = () => {
     SplashScreen.hideAsync();
   }
 
-  return <View>{fontsLoaded ? <Redirect href={"/auth/login"} /> : null}</View>;
+  return <View>{fontsLoaded ? <Redirect href="/auth/login" /> : null}</View>;
 };
 
-export default index;
+export default Index;

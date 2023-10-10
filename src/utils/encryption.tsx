@@ -1,12 +1,11 @@
-import CryptoJS from "crypto-js";
+import CryptoJS from 'crypto-js';
 
-const salt_secret_key = "Lu70K$i3pu5xf7*I8tNmd@x2oODwwDRr4&xjuyTh";
-const salt_iv = "RUNkk5Xk1DFr16i61EbwdmGNeik9B6lE";
+const salt_secret_key = 'Lu70K$i3pu5xf7*I8tNmd@x2oODwwDRr4&xjuyTh';
+const salt_iv = 'RUNkk5Xk1DFr16i61EbwdmGNeik9B6lE';
 
-export const decrypt = (encrypted: string, format: "utf8" | "base64" = "utf8"): string => {
-
+export const decrypt = (encrypted: string, format: 'utf8' | 'base64' = 'utf8'): string => {
   let cipher = encrypted;
-  if (format === "base64") {
+  if (format === 'base64') {
     cipher = CryptoJS.enc.Base64.parse(encrypted).toString(CryptoJS.enc.Utf8);
   }
 
@@ -34,14 +33,16 @@ export const encrypt = (data: string): string => {
     iv: iv_utf8,
     mode: CryptoJS.mode.CBC,
   });
-  const encrypted_base64 = CryptoJS.enc.Utf8.parse(encrypted.toString()).toString(CryptoJS.enc.Base64)
+  const encrypted_base64 = CryptoJS.enc.Utf8.parse(encrypted.toString()).toString(
+    CryptoJS.enc.Base64,
+  );
   console.log(encrypted_base64);
   return encrypted_base64.toString();
 };
 
 export const generateIvFromSalt = (): string => {
-  let hash = CryptoJS.SHA256(salt_iv);
-  let substring = hash.toString().substring(0, 16);
+  const hash = CryptoJS.SHA256(salt_iv);
+  const substring = hash.toString().substring(0, 16);
   return substring;
 };
 

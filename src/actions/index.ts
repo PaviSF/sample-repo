@@ -1,6 +1,6 @@
-import Auth from '@actions/auth'
+import Auth from '@actions/auth';
 
 const Actions = {
-    ...Auth,
-}
+  ...Auth,
+};
 export default Actions;

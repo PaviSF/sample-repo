@@ -1,2 +1,2 @@
-const primaryColor = '#FFFFFF';
-const secondaryColor = '#'
+export const primaryColor = '#FFFFFF';
+export const secondaryColor = '#';
