@@ -9,14 +9,9 @@
       "@constants/*": ["src/constants/*"],
       "@interfaces/*": ["src/interfaces/*"],
       "@actions/*": ["src/actions/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@hooks/*": ["src/hooks/*"]
       //"@/*": ["src/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }

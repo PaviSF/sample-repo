@@ -1,5 +1,6 @@
 // React and React Native imports
 import styles from '@app/auth/styles/login.styles';
+import logMessage from '@constants/LogFunction';
 import useLogin from '@hooks/auth/login.hooks';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -22,6 +23,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const router = useRouter();
   const { loading, login } = useLogin(); //Custom  hook to handle login
+  logMessage('bllah');
 
   return (
     <SafeAreaView style={styles.container}>

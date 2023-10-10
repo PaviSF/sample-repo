@@ -27,7 +27,6 @@ Software or tools that need to be installed before running your project.
 - [npm](https://www.npmjs.com/) (vXX.XX.X)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/) (vXX.XX.X)
 
-
 ### Dependencies
 
 External Dependencies used for this project.
@@ -53,8 +52,8 @@ External Dependencies used for this project.
 
 Make sure to refer to the documentation of each package for more information on how to use them in your project.
 
-
 ## Modules
+
 - [Authentication](#authentication)
 
 ### Authentication
