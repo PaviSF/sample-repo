@@ -12,9 +12,6 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-//Expo imports
-
-//Internal imports
 
 const Login = () => {
   // State variables for username, password, loading, and router.

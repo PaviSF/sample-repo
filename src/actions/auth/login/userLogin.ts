@@ -1,5 +1,3 @@
-//to remove
-import logMessage from '@constants/LogFunction';
 // React and React Native imports
 import { ResponseStatus } from '@interfaces/Register';
 import TurfDataApiResponse from '@interfaces/TurfData';
@@ -27,10 +25,54 @@ const login = async (username: string, password: string, router: any) => {
   // Callback function to handle the API response.
   const onResponse = async (response: AxiosResponse<TurfDataApiResponse, any>) => {
     if (response.data.status === ResponseStatus.SUCCESS) {
-      await AsyncStorage.setItem('fcm_id', fcmId);
+      const managerData = response.data;
       Alert.alert('Login success');
+      const storeManagerData: [string, string][] = [
+        ['token', managerData.token],
+        ['tkey', managerData.tkey],
+        ['turf_id', managerData.turf_data[0]._id],
+        ['turf_name', managerData.turf_data[0].turf_name],
+        [
+          'place',
+          managerData.turf_data[0].location.place ? managerData.turf_data[0].location.place : '',
+        ],
+        [
+          'turf_image',
+          managerData.turf_data[0].images.length > 0 ? managerData.turf_data[0].images[0] : '',
+        ],
+        [
+          'turf_logo',
+          managerData.turf_data[0].images.length > 0 ? managerData.turf_data[0].turf_logo : '',
+        ],
+        [
+          'locality',
+          managerData.turf_data[0].location.locality
+            ? managerData.turf_data[0].location.locality
+            : '',
+        ],
+        [
+          'timezone',
+          managerData.turf_data[0].time_offset ? managerData.turf_data[0].time_offset : '',
+        ],
+        [
+          'timezone_offset_minutes',
+          managerData.turf_data[0].time_offset_in_minute
+            ? managerData.turf_data[0].time_offset_in_minute.toString()
+            : '',
+        ],
+        [
+          'currency',
+          managerData.turf_data[0].turf_currency ? managerData.turf_data[0].turf_currency : '',
+        ],
+        [
+          'currency_symbol',
+          managerData.turf_data[0].turf_currency_symbol
+            ? managerData.turf_data[0].turf_currency_symbol
+            : '',
+        ],
+      ];
+      await AsyncStorage.multiSet(storeManagerData);
       router.push('/booking/');
-      logMessage(response.data.turf_data[0].turf_name);
     } else {
       Alert.alert(response.data.message);
     }
