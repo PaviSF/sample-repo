@@ -7,10 +7,11 @@ import messaging from '@react-native-firebase/messaging';
 import { postData } from '@utils/api';
 import { validateUsername } from '@utils/validation';
 import { AxiosResponse } from 'axios';
+import { Router } from 'expo-router';
 //Internal imports
 import { Alert } from 'react-native';
 
-const login = async (username: string, password: string, router: any) => {
+const login = async (username: string, password: string, router: Router) => {
   // Obtain Firebase Cloud Messaging (FCM) token and generate a UUID for the device (unique for each install).
   const fcmId = await messaging().getToken();
   const udId = await AsyncStorage.getItem('ud_id');
@@ -72,7 +73,7 @@ const login = async (username: string, password: string, router: any) => {
         ],
       ];
       await AsyncStorage.multiSet(storeManagerData);
-      router.push('/booking/');
+      router.push('/(tabs)/bookings');
     } else {
       Alert.alert(response.data.message);
     }

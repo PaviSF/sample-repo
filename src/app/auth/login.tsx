@@ -45,7 +45,7 @@ const Login = () => {
           {loading ? (
             <ActivityIndicator size={25} color="white" />
           ) : (
-            <Text style={styles.loginText}>Log I</Text>
+            <Text style={styles.loginText}>Log In</Text>
           )}
         </TouchableOpacity>
       </View>

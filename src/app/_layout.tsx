@@ -4,7 +4,7 @@ export const Layout = () => {
   return (
     <Stack>
       <Stack.Screen name="auth" />
-      <Stack.Screen name="booking" />
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 };
