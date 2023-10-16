@@ -7,7 +7,7 @@ export interface RegisterData {
   user_email?: string;
 }
 
-export default interface RegisterResponseData {
+export default interface CommonResponseData {
   status: number;
   message: string;
 }

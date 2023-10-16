@@ -73,7 +73,7 @@ const login = async (username: string, password: string, router: Router) => {
         ],
       ];
       await AsyncStorage.multiSet(storeManagerData);
-      router.push('/(tabs)/bookings');
+      router.push('/(tabs)/bookings/booking_list');
     } else {
       Alert.alert(response.data.message);
     }

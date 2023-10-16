@@ -1,3 +1,4 @@
+import { primaryColor } from '@constants/Colors';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -6,7 +7,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: primaryColor,
   },
   logo: {
     width: 180,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   loginText: {
-    color: '#ffffff',
+    color: primaryColor,
     fontSize: 16,
     fontFamily: 'Montserrat-Medium',
   },

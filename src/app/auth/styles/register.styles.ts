@@ -1,3 +1,4 @@
+import { primaryColor, secondaryColor } from '@constants/Colors';
 import { StyleSheet } from 'react-native';
 
 // Styles for the register screen
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   },
   register: {
     width: '85%',
-    backgroundColor: '#009848',
+    backgroundColor: secondaryColor,
     borderRadius: 13,
     alignItems: 'center',
     marginTop: 30,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   },
   registerText: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: primaryColor,
     fontFamily: 'Montserrat-Medium',
   },
 });

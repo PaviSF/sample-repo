@@ -36,7 +36,6 @@ export const encrypt = (data: string): string => {
   const encrypted_base64 = CryptoJS.enc.Utf8.parse(encrypted.toString()).toString(
     CryptoJS.enc.Base64,
   );
-  console.log(encrypted_base64);
   return encrypted_base64.toString();
 };
 

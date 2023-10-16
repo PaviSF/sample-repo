@@ -8,7 +8,7 @@ export default function Layout() {
         name="dashboards"
         options={{
           tabBarIcon: () => <MaterialIcons name="dashboard" size={24} color="black" />,
-          tabBarShowLabel: false,
+          tabBarActiveTintColor: 'red',
         }}
       />
       <Tabs.Screen name="bookings" />

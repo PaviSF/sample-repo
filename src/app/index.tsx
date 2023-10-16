@@ -2,12 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
 import * as Crypto from 'expo-crypto';
 import { useFonts } from 'expo-font';
-import { Redirect } from 'expo-router';
+import { useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { useEffect } from 'react';
 
 const Index = () => {
+  const router = useRouter();
   const [fontsLoaded] = useFonts({
     'Montserrat-Regular': require('assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat-Medium': require('assets/fonts/Montserrat-Medium.ttf'),
@@ -34,19 +34,23 @@ const Index = () => {
     }
   }
 
+  async function getUserStatus() {
+    const token: string | undefined = await AsyncStorage.getItem('token');
+    token ? router.replace('/dashboards/') : router.replace('/auth/login');
+  }
+
   useEffect(() => {
     async function prepare() {
       await SplashScreen.preventAutoHideAsync();
       await requestUserPermission();
       await getUDID();
+      await getUserStatus();
     }
     prepare();
   }, []);
   if (fontsLoaded) {
     SplashScreen.hideAsync();
   }
-
-  return <View>{fontsLoaded ? <Redirect href="/auth/login" /> : null}</View>;
 };
 
 export default Index;
